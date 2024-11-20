@@ -1,6 +1,6 @@
 import Styles from './Navbar.module.css'
 import PromoIcon from '../../../assets/images/promoIcon.jpg'
-import Basket from '../../../assets/images/basket.png'
+import Basket from '../../../assets/images/Basket.png'
 import Basket2 from '../../../assets/images/basket2.svg'
 import Arrow from '../../../assets/images/arrow.png'
 import Pinned from '../../../assets/images/Location.svg'
