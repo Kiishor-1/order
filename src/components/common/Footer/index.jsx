@@ -3,7 +3,7 @@ import Logo from '../../../assets/images/logo2.png'
 import Stores from '../../../assets/images/stores.svg'
 import Facebook from '../../../assets/images/Facebook.svg'
 import Instagram from '../../../assets/images/Instagram.svg'
-import Tiktok from '../../../assets/images/Tiktok.svg'
+import Tiktok from '../../../assets/images/TikTok.svg'
 import Snapchat from '../../../assets/images/Snapchat.svg'
 
 export default function Footer() {
