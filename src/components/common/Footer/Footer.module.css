@@ -1,0 +1,109 @@
+.footer{
+    padding: 2rem 1rem;
+    background-color: #D9D9D9;
+    display: grid;
+    grid-template-columns: 28% 33% 15% 15%;
+    /* grid-template-columns: repeat(4, 1fr); */
+    gap: 2rem;
+}
+
+.footer_nav{
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+
+.footer_nav ul{
+    display: flex;
+    flex-direction: column;
+}
+
+.footer_nav ul li{
+    list-style: none;
+    text-decoration: underline;
+    font-size: 15px;
+    line-height: 43px;
+}
+
+.footer_brand{
+    padding: 0 2rem;
+}
+
+.brand img{
+    width: 150px;
+}
+
+.store{
+    display: flex;
+    align-items: center;
+}
+
+.store img{
+    width: 300px;
+}
+
+.address{
+    font-size: 15px;
+    line-height: 22.5px;
+    font-weight: 400;
+}
+
+.subscribe{
+    display: flex;
+}
+
+.subscribe input{
+    padding: 1rem;
+    border-radius: 120px;
+    border: none;
+    background-color: #7a797965;
+    outline: none;
+    width: 100%;
+}
+
+.subscribe button{
+    padding: 1rem 3rem;
+    border-radius: 120px;
+    border: none;
+    background-color: #FC8A06;
+    color: white;
+    margin-left: -3rem;
+}
+
+.policy{
+    font-size: 13px;
+    font-weight: 400;
+    line-height: 43px;
+}
+.email_policy{
+    text-decoration: underline;
+}
+
+@media screen and (max-width:1300px) {
+    .footer{
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0.5rem;
+    }
+}
+@media screen and (max-width:660px) {
+    .footer{
+        grid-template-columns: repeat(1, 1fr);
+        gap: 1.5rem;
+    }
+}
+
+@media screen and (max-width:450px) {
+    .footer{
+        padding: 0.5rem;
+    }
+    .footer_brand{
+        padding: 0.5rem;
+    }
+    .app_store{
+        width: 155px;
+    }
+    .subscribe input{
+        width: fit-content;
+    }
+}
