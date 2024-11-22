@@ -13,7 +13,7 @@ function App() {
   return (
     <>
       {!isAuthPage && <Navbar/>}
-      <div style={{minHeight:"calc(100vh - 143.8px)"}}>
+      <div style={{minHeight:"calc(100vh - 417.2px)"}}>
       <Routes>
         <Route path='/' element={<Home/>}/>
         <Route path='/login' element={<Login />} />

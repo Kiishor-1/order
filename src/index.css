@@ -8,6 +8,16 @@
 
 body{
   font-family: 'Poppins';
+  min-width: 350px;
+}
+
+body::-webkit-scrollbar{
+  width: 8px;
+}
+
+body::-webkit-scrollbar-thumb{
+  background-color: gainsboro;
+  border-radius: 120px;
 }
 
 .container{

@@ -1,0 +1,25 @@
+.card{
+    width: 212px;
+    background-color: #F5F5F5;
+    border: 1px solid gainsboro;
+    border-radius: 12px;
+}
+
+.thumbnail{
+    width: 100%;
+}
+
+.title{
+    font-size:18px;
+    line-height:27px;
+    font-weight:700;
+    padding: 0 0.8rem;
+}
+
+.stats{
+    font-size:13px;
+    line-height:19.5px;
+    font-weight:400;
+    color: #FC8A06;
+    padding: 0 0.8rem 0.5rem;
+}

@@ -3,17 +3,17 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: calc(100vh - 143.8px);
+    height: calc(100vh - 417.2px);
     text-align: center;
     font-family: 'Poppins', sans-serif;
   }
   
-  h1 {
+  .notFound h1 {
     font-size: 5rem;
     color: #FC8A06;
   }
   
-  p {
+   .notFound {
     font-size: 1.5rem;
     margin: 1rem 0;
   }

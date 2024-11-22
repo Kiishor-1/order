@@ -1,0 +1,104 @@
+.card{
+    height: 425px;
+    width: 100%;
+    border-radius: 12px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 2rem 4rem;
+    margin-bottom: 2rem;
+}
+
+
+.desc{
+    font-size: 18px;
+    line-height: 27px;
+    font-weight: 500;
+    color: #FC8A06;
+}
+
+.title{
+    font-size: 44px;
+    line-height: 66px;
+    font-weight: 700;
+    color: white;
+}
+
+.card button{
+    font-size: 18px;
+    line-height: 27px;
+    font-weight: 500;
+    background-color: #FC8A06;
+    color: white;
+    border-radius: 120px;
+    border: none;
+    padding:0.5rem 1rem;
+    max-width: fit-content;
+}
+
+.card img{
+    width: 100%;
+    height: 100%;
+    border-radius: inherit;
+    z-index: -1;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+
+.card span.offers{
+    position: absolute;
+    top: 0;
+    left: 3rem;
+    font-size: 18px;
+    line-height: 27px;
+    font-weight: 700;
+    background-color: white;
+    border-bottom-left-radius: 12px;
+    border-bottom-right-radius: 12px;
+    padding:0.8rem 1rem;
+    text-align: center;
+}
+
+@media screen and (max-width:1024px) {
+    .card{
+        height: 350px;
+    }
+    .card span.offers{
+        font-size: 14px;
+        padding: 0.5rem 1rem;
+        left: 1.5rem;
+    }
+}
+
+@media screen and (max-width:992px) {
+    .card{
+        height: 300px;
+    }
+    .title{
+        font-size: 32px;
+        line-height: 25px;
+        padding: 0.5rem 0;
+    }
+    .desc{
+        font-size: 14px;
+    }    
+}
+
+@media screen and (max-width:768px) {
+    .card{
+        padding: 1rem;
+    }
+    .card span.offers{
+        font-size: 12px;
+        padding: 0.5rem 0.8rem;
+        left: 1rem;
+    }
+    .title{
+        font-size: 25px;
+    }
+}

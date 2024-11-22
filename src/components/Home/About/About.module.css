@@ -1,0 +1,91 @@
+.about_page{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 4rem;
+    border-radius: 12px;
+    background-color: #D9D9D9;
+    margin-bottom: 2rem;
+}
+
+.about_page main{
+    width: 97%;
+}
+
+section.about_content{
+    padding: 4rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    background-color: white;
+    border-radius: 12px;
+}
+
+section.about_content aside{
+    flex: 1;
+}
+section.about_content aside ul{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+}
+section.about_content aside ul li{
+    list-style: none;
+    font-size: 18px;
+    line-height: 27px;
+    font-weight: 700;
+    text-align: center;
+}
+
+.tasks{
+    width: 60%;
+}
+
+.tasks div{
+    display: flex;
+    gap: 1rem;
+}
+
+.tasks p{
+    margin-top: 1rem;
+    font-size:16px ;
+    line-height:24px;
+    font-weight: 400;
+}
+
+@media screen and (max-width:1300px){
+    .about_page{
+        padding: 0.5rem;
+        background-color: white;
+    }
+    section.about_content aside{
+        width: 100%;
+        padding: 1rem;
+    }
+    .tasks{
+        width: 100%;
+        background-color: #03081F;
+        padding: 1rem 0;
+        border-radius: 12px;
+    }
+    .tasks div{
+        align-items: center;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+    .tasks p{
+        padding: 1rem;
+        text-align: center;
+    }
+    .tasks_desc{
+        color: white;
+    }
+    section.about_content{
+        flex-direction: column;
+        align-items: center;
+        gap: 2rem;
+        padding: 0;
+    }
+}

@@ -1,0 +1,49 @@
+.popular_restaurants {
+    padding: 1rem;
+    margin-bottom: 4rem;
+}
+
+.heading {
+    font-size: 32px;
+    line-height: 48px;
+    font-weight: 700;
+    margin-bottom: 2rem;
+}
+
+.cards {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 0.79rem;
+}
+
+@media screen and (max-width:992px) {
+    .heading {
+        font-size: 16px;
+        line-height: 24px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .popular_restaurants {
+        overflow: hidden;
+    }
+
+    .cards {
+        justify-content: flex-start;
+        overflow-x: auto;
+        display: grid;
+        grid-template-columns: repeat(6, 1fr);
+        gap: 1rem;
+        scroll-snap-type: x mandatory;
+    }
+
+    .cards::-webkit-scrollbar {
+        display: none;
+    }
+
+
+    .cards {
+        -webkit-overflow-scrolling: touch;
+    }
+}

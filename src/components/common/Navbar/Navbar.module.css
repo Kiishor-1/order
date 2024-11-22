@@ -132,7 +132,7 @@ ul.cart li img {
 }
 
 .close_btn {
-    display: flex;
+    display: none;
     position: absolute;
     top: 1rem;
     right: 1rem;
@@ -189,6 +189,8 @@ ul.cart li img {
 .auth_buttons {
     border: none;
     background-color: #03081F;
+    color: white;
+    cursor: pointer;
     border-radius: 120px;
     padding: 0.8rem 1.3rem;
     display: flex;
@@ -304,3 +306,57 @@ ul.cart li img {
         display: block;
     }
 }
+
+
+.modal_overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.808);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+  }
+  
+  .modal {
+    min-height: 200px;
+    max-width: 400px;
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .modal_actions {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 15px;
+  }
+  
+  .confirm {
+    background: #f44336;
+    color: white;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .cancel {
+    background: #4caf50;
+    color: white;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
