@@ -16,7 +16,7 @@ export function fetchSharedCart(sharedCartId) {
 
       const result = response.data.data;
 
-      console.log('result',response.data.data)
+      console.log('result', response.data.data)
 
       toast.success("Shared cart loaded successfully", { id: toastId });
 
@@ -31,34 +31,61 @@ export function fetchSharedCart(sharedCartId) {
 }
 
 
-
-
-// Function to create a shared cart
 export async function createSharedCart(token, cartData) {
-    const toastId = toast.loading("Creating shared cart...");
-    let result = null;
-    try {
-        const response = await axios.post(
-            CART_ENDPOINTS.CREATE_SHARED_CART,
-            cartData, // Pass cart data in the request body
-            {
-                headers: {
-                    Authorization: `Bearer ${token}`,
-                },
-            }
-        );
+  const toastId = toast.loading("Creating shared cart...");
+  let result = null;
+  try {
+    const response = await axios.post(
+      CART_ENDPOINTS.CREATE_SHARED_CART,
+      cartData,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
 
-        if (!response.data.success) {
-            throw new Error(response.data.message);
-        }
-
-        result = response.data.data; // Assuming `data` contains the new shared cart info
-        toast.success("Shared cart created successfully!");
-    } catch (error) {
-        console.error("Error creating shared cart:", error);
-        toast.error("Could not create the shared cart.");
-    } finally {
-        toast.dismiss(toastId);
+    if (!response.data.success) {
+      throw new Error(response.data.message);
     }
-    return result;
+
+    result = response.data.data;
+    // toast.success("Shared cart created successfully!");
+  } catch (error) {
+    console.error("Error creating shared cart:", error);
+    toast.error("Could not create the shared cart.");
+  } finally {
+    toast.dismiss(toastId);
+  }
+  return result;
+}
+
+
+
+export async function syncCart(token, currentCartItems) {
+  const toastId = toast.loading("Fetching payment methods");
+  try {
+    const cartData = { items: currentCartItems };
+
+    const response = await axios.post(CART_ENDPOINTS.SYNC_CART, cartData, {
+      headers: {
+        Accept: 'application/json',
+        Authorization: `Bearer ${token}`,
+      },
+    });
+
+    if (!response.data.success) {
+      toast.error('Please try again later');
+      return null;
+    }
+
+    // toast.success("Cart synced successfully", { id: toastId });
+    return response.data.data;
+  } catch (error) {
+    console.error("Error syncing the cart:", error);
+    toast.error(error?.message || "Failed to sync your cart.", { id: toastId });
+    throw error;
+  } finally {
+    toast.dismiss(toastId);
+  }
 }

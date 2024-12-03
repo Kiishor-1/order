@@ -28,4 +28,5 @@ export const CART_ENDPOINTS = {
     CLEAR_CART: `${BASE_URL}/users/cart/clear`,
     FETCH_SHARED_CART: (cartId) => `${BASE_URL}/users/cart/shared/${cartId}`,
     CREATE_SHARED_CART: `${BASE_URL}/users/cart/shared`,
+    SYNC_CART:`${BASE_URL}/users/cart/sync`,
 };
