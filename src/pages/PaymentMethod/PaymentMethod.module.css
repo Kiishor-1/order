@@ -1,0 +1,94 @@
+.payment_method{
+    height: calc(100vh - 143px);
+    padding-top: 2rem;
+}
+
+
+.payment_method h3{
+    display: flex;
+    align-content: center;
+    gap: 0.5rem;
+    font-size: 32px;
+    line-height: 48px;
+    font-weight: 600;
+    margin-bottom: 2rem;
+}
+
+main.main{
+    display: flex;
+    width: 100%;
+    gap: 2rem;
+}
+
+.payment_cards_section{
+    flex: 1;
+}
+
+.payment_cards{
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+
+.separator{
+    margin: 1rem 0;
+}
+
+.proceed_payment{
+    width: 40%;   
+    border: 1px solid #000000c5;
+    height: fit-content;
+    padding: 12px;
+    border-radius: 12px;
+}
+
+.proceed_payment section{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.proceed_payment section h5{
+    font-size: 20px;
+    line-height: 32px;
+    font-weight: 400;
+    color: #83858A;
+}
+.proceed_payment section p{
+    font-size: 20px;
+    line-height: 32px;
+    font-weight: 700;
+}
+
+
+
+main.main .make_payment{
+    width: 100%;
+    padding: 1rem;
+    background-color: #FC8A06;
+    border: none;
+    color: white;
+    border-radius: 120px;
+    font-size: 16px;
+    line-height: 19.2px;
+    font-weight: 600;
+}
+
+.add_card{
+    width: 100%;
+    margin-top: 1rem;
+    background-color: white;
+    border: 2px solid gainsboro;
+    padding: 0.5rem 1rem;
+    border-radius: 120px;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 16px;
+    line-height: 25.6px;
+    font-weight: 400;
+}
+
+.custom_cards{
+    margin: 1rem 0;
+}

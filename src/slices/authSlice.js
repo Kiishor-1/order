@@ -3,6 +3,7 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import toast from "react-hot-toast";
 import { AUTH_ENDPOINTS } from '../services/api';
 import axios from "axios";
+import { clearCart } from "./cartSlice";
 
 const { REGISTER, LOGIN, LOGOUT_USER } = AUTH_ENDPOINTS;
 
@@ -81,6 +82,7 @@ export const logoutUser = createAsyncThunk(
 
             if (response.data?.success)
                 dispatch(logout());
+                dispatch(clearCart());
             toast.success('User logged out successfully');
             return true;
         } catch (error) {
@@ -121,6 +123,8 @@ const authSlice = createSlice({
             state.token = null;
             localStorage.removeItem("user");
             localStorage.removeItem("token");
+            localStorage.removeItem("cartItems");
+            localStorage.removeItem("totalPrice");
         },
     },
     extraReducers: (builder) => {

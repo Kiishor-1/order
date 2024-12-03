@@ -1,5 +1,4 @@
 .popular_restaurants {
-    padding: 1rem;
     margin-bottom: 4rem;
 }
 
@@ -18,13 +17,16 @@
 }
 
 @media screen and (max-width:992px) {
+    .popular_restaurants{
+        padding: 1rem;
+    }
     .heading {
         font-size: 16px;
         line-height: 24px;
     }
 }
 
-@media screen and (max-width: 768px) {
+/* @media screen and (max-width: 768px) {
     .popular_restaurants {
         overflow: hidden;
     }
@@ -46,4 +48,4 @@
     .cards {
         -webkit-overflow-scrolling: touch;
     }
-}
+} */

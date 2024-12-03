@@ -18,6 +18,12 @@ body::-webkit-scrollbar{
 body::-webkit-scrollbar-thumb{
   background-color: gainsboro;
   border-radius: 120px;
+  cursor: pointer;
+}
+
+
+button{
+  cursor: pointer;
 }
 
 .container{
@@ -29,4 +35,33 @@ body::-webkit-scrollbar-thumb{
   .container{
     width: 100%;
   }
+}
+
+.custom-marker {
+  position: relative;
+  width:50px;
+  height:50px;
+  background-color: black;
+  /* background-color: #ff007f; */
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.custom-marker::after {
+  content: '';
+  position: absolute;
+  width: 80px;
+  height: 80px;
+  background-color: rgba(0, 0, 0, 0.348);
+  /* background-color: rgba(176, 22, 99, 0.441); */
+  border-radius: 50%;
+  z-index: 100000; 
+}
+
+.custom-marker-icon {
+  width: 20px !important;
+  height: 20px !important;
 }

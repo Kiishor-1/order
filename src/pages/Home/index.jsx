@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import Header from "../../components/Home/Header";
@@ -10,10 +10,13 @@ import Collab from "../../components/Home/Collab";
 import About from "../../components/Home/About";
 import Stats from "../../components/Home/Stats";
 import { isTokenExpired, logout } from "../../slices/authSlice";
+import Skeleton from "../../components/common/Skeleton";
 export default function Home() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { user, token } = useSelector((state) => state.auth);
+  const { isLoading } = useSelector((state)=>state.restaurant)
+
 
   useEffect(() => {
     if (!token || !user || isTokenExpired(token)) {
@@ -23,14 +26,22 @@ export default function Home() {
   }, [token, user, navigate, dispatch]);
   return (
     <div className="container">
-        <Header/>
-        <Deals/>
-        <PopularCategories/>
-        <PopularRestaurants/>
-        <AdCenter/>
-        <Collab/>
-        <About/>
-        <Stats/>
+      {
+        isLoading ? (
+          <Skeleton />
+        ) : (
+          <>
+            <Header />
+            <Deals heading={"Up to -40% 🎊 Order.uk exclusive deals"} headingMd={"Up to -40% Discount Offers 🎊"} />
+            <PopularCategories heading={"Order.uk Popular Categories 🤩"} />
+            <PopularRestaurants heading={"Popular Restaurants"} />
+            <AdCenter />
+            <Collab />
+            <About />
+            <Stats />
+          </>
+        )
+      }
     </div>
   )
 }

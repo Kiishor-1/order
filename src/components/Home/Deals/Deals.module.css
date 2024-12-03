@@ -21,3 +21,23 @@
         grid-template-columns: repeat(1,1fr);
     }
 }
+
+
+
+/* 
+.deals{
+    margin-bottom: 2rem;
+}
+
+.cards{
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+@media screen and (max-width:1024px) {
+    .deals{
+        padding: 1rem;
+    }
+} */

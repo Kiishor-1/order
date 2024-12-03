@@ -1,0 +1,30 @@
+.card_container_wrapper{
+    margin: 2rem 0;
+}
+
+.heading{
+    font-size: 44px;
+    line-height: 66px;
+    font-weight: 700;
+    margin-bottom: 2rem;
+    color: #FC8A06;
+}
+.heading_first{
+    font-size: 44px;
+    line-height: 66px;
+    font-weight: 700;
+    margin-bottom: 2rem;
+    color: black;
+}
+.card_container{
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+@media screen and (max-width:1024px) {
+    .card_container_wrapper{
+        padding: 1rem;
+    }
+}

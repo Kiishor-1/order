@@ -1,0 +1,26 @@
+.reviews{
+    padding: 1rem;
+    background-color: white;
+    color: black;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: absolute;
+    left: -100px;
+    bottom: -1rem;
+    border-radius: 12px;
+}
+
+.reviews .rating{
+    font-size: 4rem;
+    line-height: 66px;
+    padding: 0;
+    margin: 0;
+
+}
+
+.reviews .review{
+    font-size: 12px;
+    line-height: 20px;
+    font-weight: 400;
+}

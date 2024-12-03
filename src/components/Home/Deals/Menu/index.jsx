@@ -3,7 +3,7 @@ import Styles from "./Menu.module.css";
 import Next from "../../../../assets/images/Next.svg";
 import Cuisine from "../../../../assets/images/Cuisine.svg";
 
-export default function Menu() {
+export default function Menu({heading, headingMd}) {
   const menuItems = ["Vegan", "Sushi", "Pizza & Fast food", "Others"];
   const [activeItem, setActiveItem] = useState(menuItems[0]);
   const [isModalOpen, setIsModalOpen] = useState(false); 
@@ -32,8 +32,11 @@ export default function Menu() {
 
   return (
     <div className={Styles.menu}>
-      <h3 className={Styles.heading}>Up to -40% 🎊 Order.uk exclusive deals</h3>
-      <h3 className={Styles.heading_md}>Up to -40% Discount Offers 🎊 </h3>
+      {heading &&
+        <h3 className={Styles.heading}>{heading}</h3>
+      }
+      {headingMd &&
+        <h3 className={Styles.heading_md}>{headingMd}</h3>}
       <ul className={Styles.menu_items}>
         {menuItems.map((item, id) => (
           <li

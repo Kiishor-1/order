@@ -1,0 +1,68 @@
+.map {
+    transition: all 300ms ease-in;
+    border-radius: 1rem;
+    margin: 2.5rem auto;
+    height: 600px;
+    padding: 0.5rem;
+}
+
+.map:hover {
+    box-shadow: 2px 2px 16px gray;
+}
+
+@media screen and (max-width:1024px) {
+    .map{
+        padding: 1rem;
+        width: 90%;
+        height: 500px;
+    }
+}
+
+@media screen and (max-width:450px) {
+    .map {
+        width: 90%;
+        height: 400px;
+    }
+}
+
+.location{
+    height: 80%;
+    width: 30%;
+    background-color: #03081FF7;
+    z-index: 40;
+    color: white;
+    position: absolute;
+    top: 10%;
+    left: 10%;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    /* align-items: center; */
+    gap: 1.5rem;
+    justify-content: center;
+    padding: 2rem;
+}
+
+.location section{
+    display: flex;
+    flex-direction: column;
+}
+
+.key{
+    font-size: 18px;
+    line-height: 31px;
+    font-weight: 700;
+}
+
+.value{
+    color: #FC8A06;
+    font-size: 18px;
+    line-height: 46px;
+    font-weight: 400;
+}
+
+@media screen and (max-width:768px) {
+    .location{
+        display: none;
+    }
+}

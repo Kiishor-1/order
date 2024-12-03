@@ -4,7 +4,7 @@ import AuthImage from '../../assets/images/authImage.png';
 import { useEffect, useState } from 'react';
 import toast from 'react-hot-toast';
 import { useDispatch, useSelector } from 'react-redux';
-import { login } from '../../slices/authSlice';
+import { login, setIsLoading } from '../../slices/authSlice';
 import { isStrongPassword } from '../../helpers/isStrongPassword';
 import Logo from '../../assets/images/logo.png'
 
@@ -12,7 +12,7 @@ export default function Login() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const { user, token } = useSelector((state) => state.auth);
+  const { user, token, isLoading } = useSelector((state) => state.auth);
 
   useEffect(() => {
     if (user && token) {
@@ -53,17 +53,20 @@ export default function Login() {
       toast.error(firstError);
     }
     if (Object.keys(newErrors).length === 0) {
-      console.log(formData)
-      dispatch(login(formData))
-        .then((result) => {
-          if (result.type === 'auth/login/fulfilled') {
-            setFormData(initialValue);
-            navigate('/');
-          }
-        })
-        .catch((error) => {
-          console.log(error);
-        });
+      console.log(formData);
+
+      setIsLoading(true);
+      try {
+        const result = dispatch(login(formData));
+        if (result.type === 'auth/login/fulfilled') {
+          setFormData(initialValue);
+          navigate('/');
+        }
+      } catch (error) {
+        console.log(error);
+      } finally {
+        setIsLoading(false);
+      }
     }
   };
 
@@ -92,7 +95,7 @@ export default function Login() {
             <div>
               <label htmlFor="password">Password</label>
               <input
-              id='password'
+                id='password'
                 type="password"
                 name="password"
                 placeholder="At least 8 characters"
@@ -102,10 +105,15 @@ export default function Login() {
             </div>
           </div>
           <div className={Styles.button_groups}>
-            <button className={Styles.auth_login}>Sign in</button>
+            <button
+              className={Styles.auth_login}
+              disabled={isLoading} // Disable button if loading
+            >
+              {isLoading ? "Signing in..." : "Sign in"}
+            </button>
             <p className={Styles.account_check} to={"/register"}>
-            {`Don't you have an account?`}
-            <Link to={"/register"} className={Styles.auth_register}>Sign up</Link>
+              {`Don't you have an account?`}
+              <Link to={"/register"} className={Styles.auth_register}>Sign up</Link>
             </p>
           </div>
         </form>

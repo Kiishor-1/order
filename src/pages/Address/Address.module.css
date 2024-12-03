@@ -1,0 +1,120 @@
+.address{
+    height: calc(100vh - 147px);
+}
+
+
+.header{
+    padding-top: 2rem;
+}
+
+.address h3{
+    font-size: 32px;
+    line-height:48px ;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    cursor: pointer;
+}
+
+.main{
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+    padding: 1rem;
+}
+
+.main button{
+    background-color: white;
+    border: 2px dashed gainsboro;
+    border-radius: 12px;
+    padding:4rem 5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 0.4rem;
+    font-size: 18px;
+    line-height: 27px;
+    font-weight: 400;
+}
+
+.add_address{
+    width: 50.22px;
+    height: 50.22px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background-color: #fc89063d;
+}
+.add_address img{
+    width: 24px;
+    height: 24px;
+}
+
+.addresses{
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.address_item{
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+    justify-content: flex-start;
+    border: 2px solid gainsboro;
+    border-radius: 12px;
+    padding: 1rem 1rem 0;
+    width: 250px;
+    height: 220px;
+    overflow-y: auto;
+    position: relative;
+}
+
+.address_item:active{
+    border-color: black;
+}
+
+.address_item::-webkit-scrollbar{
+    display: none;
+}
+
+.address_item h5{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.address_item h5 span{
+    color: #FC8A06;
+}
+.address_item p{
+    font-size: 14px;
+    line-height: 16.8px;
+    font-weight: 400;
+}
+
+.address_item footer{
+    margin-top: auto;
+    padding: 0.5rem 0 ;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    position: sticky;
+    bottom: 0;
+    background-color: white;
+}
+
+.address_item span{
+    font-size: 14px;
+    line-height: 16.8px;
+    font-weight: 400;
+    color: #FC8A06;
+    cursor: pointer;
+}
+.address_item footer span:first-child{
+    padding: 0 0.5rem;
+    border-right: 1px solid #FC8A06;
+}

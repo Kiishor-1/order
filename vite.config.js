@@ -8,5 +8,8 @@ export default defineConfig({
     host: '0.0.0.0', // Accept connections from any device
     port: 5173, // Ensure the correct port
   },
+  optimizeDeps: {
+    include: ['swiper'],
+  },
 })
 

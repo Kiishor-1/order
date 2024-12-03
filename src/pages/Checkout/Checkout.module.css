@@ -1,0 +1,178 @@
+.checkout h3{
+    display: flex;
+    align-items: center;
+    font-size: 32px;
+    line-height: 48px;
+    font-weight: 600;
+}
+
+.checkout h3{
+    padding-top: 2rem;
+}
+
+.checkout h3 img{
+    height: 39px;
+    width: 39px;
+    cursor: pointer;
+}
+
+.main{
+    margin:2rem 0;
+    display: flex;
+    gap: 2rem;
+    width: 100%;
+}
+
+.ordered_items{
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    border: 2px solid #03081F;
+    border-radius: 12px;
+    padding: 16px;
+    height: fit-content;
+}
+
+.items_in_basket{
+    display: flex;
+    flex-direction: column;
+    gap: 0.7rem;
+}
+
+.item{
+    padding: 0.5rem 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+}
+
+.seperator{
+    border-bottom: 2px solid #202938;
+}
+
+.item img{
+    height: 48px;
+    width: 48px;
+    border-radius: 7.49px;
+}
+
+.item div{
+    flex: 1;
+}
+
+.item div h5{
+    font-size: 16px;
+    line-height: 24px;
+    font-weight: 600;
+}
+
+.item div p{
+    font-size: 12px;
+    line-height: 19.2px;
+    font-weight: 400;
+    color: #83858A;
+}
+
+.item span{
+    font-size: 14px;
+    line-height: 25px;
+    font-weight: 600;
+    color: #028643;
+}
+
+.order_notes{
+    width: 100%;
+    padding: 0.5rem 0;
+}
+.order_notes p{
+    font-size: 12px;
+    line-height: 19.2px;
+    font-weight: 400;
+    margin-bottom: 0.5rem;
+}
+.order_notes input{
+    font-size: 16px;
+    border: 1px solid gainsboro;
+    border-radius: 120px;
+    padding: 1rem 1rem;
+    width: 100%;
+}
+
+.no_item{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* border: 1px solid red; */
+}
+
+.no_item span{
+    font-size: 20px;
+    line-height: 36px;
+    font-weight: 500;
+}
+
+
+.billing{
+    width: 40%;
+}
+
+.sum_total{
+    padding: 1rem 0;
+    border-bottom: 2px solid #202938;
+    border-top: 2px solid #202938;
+    margin-top: 1rem;
+}
+
+.sum_total p{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.sum_total p .key{
+    font-size: 16px;
+    line-height: 25.6px;
+    font-weight: 400;
+    color: #83858A;
+}
+.sum_total p .value{
+    font-size: 14px;
+    line-height: 25px;
+    font-weight: 600;
+    color: #83858A;
+}
+
+.sub_total{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.sub_total span.key{
+    font-size: 20x;
+    line-height: 32px;
+    font-weight: 400;
+    color: #83858A;
+}
+.sub_total span.value{
+    font-size: 20px;
+    line-height: 32px;
+    font-weight: 700;
+}
+
+
+.billing button{
+    width: 100%;
+    padding: 1rem;
+    border: none;
+    background-color:#FC8A06;
+    color: white;
+    border-radius: 120px;
+    font-variant-east-asian: 16px;
+    line-height: 19.2px;
+    font-weight: 600;
+    margin: 1rem 0;
+}

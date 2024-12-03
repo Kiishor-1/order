@@ -1,0 +1,68 @@
+.review_card{
+    background-color: white;
+    padding: 1rem;
+}
+
+section.card_header{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.profile{
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.profile img{
+    height: 54px;
+    width: 54px;
+}
+.user{
+    border-left: 2px solid #FC8A06;
+    padding: 0 0.5rem;
+}
+
+.user h5{
+    font-size: 18px;
+    line-height: 21px;
+    font-weight: 600;
+}
+.user span{
+    font-size: 16px;
+    line-height: 21px;
+    font-weight: 400;
+}
+
+.rating_date p{
+    font-size: 15px;
+    line-height: 21px;
+    font-weight: 400;
+}
+
+.rating_date img{
+    width: 23px;
+    height: 23px;
+}
+
+.review_info p{
+    font-size: 16px;
+    line-height: 27px;
+    font-weight: 400;
+    padding: 2rem 1rem;
+}
+
+
+@media screen and (max-width:768px) {
+    .rating_date{
+        font-size: 12px;
+        display: flex;
+        align-items: center;
+        gap: 0.3rem;
+    }
+
+    .rating_date img{
+        width: 15px;
+    }
+}

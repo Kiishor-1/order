@@ -9,17 +9,44 @@ import User from '../../../assets/images/user.svg';
 import Bar from '../../../assets/images/Menu.svg';
 import Times from '../../../assets/images/times.svg';
 import UserImage from '../../../assets/images/user.png';
-import { Link, NavLink } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { logoutUser } from '../../../slices/authSlice';
+import toast from 'react-hot-toast';
+import { fetchFirstRestaurant } from '../../../services/operations/restaurantApi';
 
-export default function Navbar() {
+export default function Navbar({openModal, setOpenModal}) {
   const navMenuRef = useRef();
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const { user } = useSelector((state) => state.auth);
 
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [restaurant, setRestaurant] = useState(null);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    const getRestaurant = async () => {
+      try {
+        const fetchedRestaurant = await fetchFirstRestaurant();
+        if(!fetchedRestaurant){
+          return;
+        }
+        setRestaurant(fetchedRestaurant);
+      } catch (err) {
+        setError(err.message || "Something went wrong");
+      }
+    };
+    getRestaurant();
+  }, []);
+
+  useEffect(() => {
+    if (error) {
+      toast.error(error?.message || 'Error occured in fetching restaurants');
+      return;
+    }
+  }, [error])
+
 
   const openMenu = () => {
     navMenuRef.current.style.display = 'block';
@@ -28,14 +55,42 @@ export default function Navbar() {
     navMenuRef.current.style.display = 'none';
   };
 
-  const handleLogoutConfirm = () => {
-    dispatch(logoutUser());
-    setIsModalOpen(false);
+  const { items } = useSelector((state) => state.cart);
+
+  const handleGoToCart = () => {
+    if (!restaurant) {
+      toast.error("No restaurants available");
+      // return;
+    }
+
+    if (items.length === 0) {
+      toast.error("No items in the basket");
+      // return;
+    }
+
+    navigate(`/restaurants/${restaurant._id}`)
   };
 
-  const handleLogoutCancel = () => {
-    setIsModalOpen(false);
-  };
+
+  const navLinks = [
+    'Home',
+    'Browse Menu',
+    'Special Offers',
+    'Restaurants',
+    'Track Orders'
+  ];
+
+
+  const [activeIndex, setActiveIndex] = useState(null);
+
+  const handleNavLink = (idx) => {
+    setActiveIndex(idx);
+  }
+
+
+  const toggleCart = ()=>{
+    setOpenModal((prev)=> !prev)
+  }
 
   return (
     <div className="container">
@@ -54,11 +109,11 @@ export default function Navbar() {
             <span className={Styles.change_location}>Change location</span>
           </div>
           <ul className={Styles.cart}>
-            <li>
+            <li >
               <img className={Styles.basket} src={Basket} alt="cart image" />
-              <span> My Cart</span>
+              <button onClick={toggleCart} className={Styles.go_to_cart}> My Cart</button>
             </li>
-            <li></li>
+            <li>{items.length > 0 && items.length}</li>
             <li>
               <img className={Styles.arrow} src={Arrow} alt="" />
             </li>
@@ -66,7 +121,9 @@ export default function Navbar() {
         </section>
       </nav>
       <div className={Styles.navbar}>
-        <img className={Styles.logo} src={Logo} alt="" />
+        <Link to={"/"}>
+          <img className={Styles.logo} src={Logo} alt="" />
+        </Link>
         <div className={Styles.nav_menu} ref={navMenuRef}>
           <img
             onClick={closeMenu}
@@ -74,62 +131,26 @@ export default function Navbar() {
             className={Styles.close_btn}
             alt=""
           />
+
           <ul>
-            <li>
-              <NavLink
-                to="/"
-                className={({ isActive }) =>
-                  isActive ? Styles.active : Styles.underline_none
-                }
-              >
-                Home
-              </NavLink>
-            </li>
-            <li>
-              <NavLink
-                to="/browse-menu"
-                className={({ isActive }) =>
-                  isActive ? Styles.active : Styles.underline_none
-                }
-              >
-                Browse Menu
-              </NavLink>
-            </li>
-            <li>
-              <NavLink
-                to="/special-offers"
-                className={({ isActive }) =>
-                  isActive ? Styles.active : Styles.underline_none
-                }
-              >
-                Special Offers
-              </NavLink>
-            </li>
-            <li>
-              <NavLink
-                to="/restaurants"
-                className={({ isActive }) =>
-                  isActive ? Styles.active : Styles.underline_none
-                }
-              >
-                Restaurants
-              </NavLink>
-            </li>
-            <li>
-              <NavLink
-                to="/track-orders"
-                className={({ isActive }) =>
-                  isActive ? Styles.active : Styles.underline_none
-                }
-              >
-                Track Orders
-              </NavLink>
-            </li>
+            {
+              navLinks.length > 0 &&
+              navLinks.map((link, index) => (
+                <li key={index}
+                  onClick={() => handleNavLink(index)}
+                  className={`${Styles.nav_link} ${index === activeIndex ? Styles.active : ""
+                    }`}
+                >
+                  {link}
+                </li>
+              ))
+            }
           </ul>
+
           {user ? (
             <button
               className={Styles.auth_buttons}
-              onClick={() => setIsModalOpen(true)}
+              onClick={() => navigate('/profile')}
             >
               <img src={User} alt="" />
               Hey {user ? user?.name.split(' ')[0] : 'User'}
@@ -153,28 +174,13 @@ export default function Navbar() {
             <img src={UserImage} alt="" />
             Hey {user ? user?.name.split(' ')[0] : 'User'}
           </div>
-          <div className={Styles.items_at_cart}>
+          <div className={Styles.items_at_cart} >
+          <span className={Styles.cart_badge}>{items.length}</span>
             <img src={Basket2} alt="" />
-            My Cart
+            <button onClick={toggleCart} className={Styles.go_to_cart}> My Cart</button>
           </div>
         </div>
       </section>
-
-      {isModalOpen && (
-        <div className={Styles.modal_overlay}>
-          <div className={Styles.modal}>
-            <p>Are you sure you want to logout?</p>
-            <div className={Styles.modal_actions}>
-              <button onClick={handleLogoutConfirm} className={Styles.confirm}>
-                Yes
-              </button>
-              <button onClick={handleLogoutCancel} className={Styles.cancel}>
-                No
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
     </div>
   );
 }

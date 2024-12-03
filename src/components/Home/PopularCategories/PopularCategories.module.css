@@ -1,5 +1,5 @@
 .popular_categories {
-    padding: 1rem;
+    /* padding: 1rem; */
     margin-bottom: 2rem;
 }
 
@@ -21,6 +21,7 @@
 @media screen and (max-width:992px) {
     .popular_categories{
         background-color: #D9D9D980;
+        padding: 1rem;
     }
 
     .heading {

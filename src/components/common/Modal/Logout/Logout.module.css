@@ -1,0 +1,33 @@
+section.logout_modal{
+    padding: 2rem;
+}
+
+section.logout_modal p{
+    padding: 1rem 0 ;
+}
+
+.modal_actions{
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    justify-content: center;
+}
+
+
+.confirm {
+    background: #f44336;
+    color: white;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.cancel {
+    background: #4caf50;
+    color: white;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}

@@ -1,0 +1,78 @@
+.card{
+    /* height: 100%;
+    width: 100%; */
+    width: 450px;
+    border-radius: 12px;
+    position: relative;
+}
+
+@media screen and (max-width:768px) {
+    .card{
+        width: 100%;
+    }
+}
+
+.card p.desc{
+    color: #FC8A06;
+    font-size: 18px;
+    line-height: 27px;
+    font-weight: 500;
+    position: absolute;
+    left: 2rem;
+    bottom: 4rem;
+}
+
+.card h3.title{
+    color: white;
+    font-size: 24px;
+    line-height: 36px;
+    font-weight: 700;
+    position: absolute;
+    left: 2rem;
+    bottom: 2rem;
+}
+
+.card img{
+    height: 100%;
+    width: 100%;
+    border-radius: inherit;
+}
+
+.card span.discount{
+    font-size: 18px;
+    line-height: 27px;
+    font-weight: 700;
+    height: 66px;
+    width: 88px;
+    position: absolute;
+    top: 0;
+    right: 1rem;
+    background-color: #03081F;
+    border-bottom-right-radius: 12px;
+    border-bottom-left-radius: 12px;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+button.add_button{
+    position: absolute;
+    right: 0;
+    bottom: 6px;
+    background-color: #FFFFFF;
+    border-top-left-radius: 45px;
+    border-bottom-right-radius: 12px;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 97px;
+    height: 89px;
+}
+
+button.add_button img{
+    height: 49px;
+    width: 49px;
+    border-radius: 0;
+}

@@ -1,0 +1,89 @@
+.payment_card{
+    border-radius: 120px;
+    padding: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border: 2px solid gainsboro;
+    gap: 0.5rem;
+}
+
+section.card_icon{
+    height:42px;
+    width:42px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #FFE8CE;
+}
+section.card_icon2{
+    height:26px;
+    width:26px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #FFE8CE;
+}
+
+section.card_icon img{
+    width: 20px;
+    height: 20px;
+}
+section.card_icon2 img{
+    width: 10.4px;
+    height: 78x;
+}
+
+section.payment_category{
+    flex: 1;
+}
+section.payment_category .standardCards{
+    font-size: 16px;
+    line-height: 25.6px;
+    font-weight: 400;
+}
+section.payment_category .wallet{
+    font-size: 18px;
+    line-height: 23.4px;
+    font-weight: 500;
+}
+section.payment_category p{
+    font-size: 12px;
+    line-height: 19.2px;
+    font-weight: 400;
+    color: #83858A;
+}
+
+section.navigation{
+    width: 16px;
+    height: 16px;
+}
+
+section.navigation img{
+    height: 100%;
+    width: 100%;
+}
+
+input[type="radio"]{
+    height: 1.4rem;
+    width: 1.4rem;
+}
+.payment_card {
+    border: 1px solid #ccc;
+    padding: 10px;
+    border-radius: 8px;
+    position: relative;
+}
+
+.payment_card.selected {
+    border: 2px solid #007bff;
+    background-color: #f0f8ff;
+}
+
+.radio {
+    position: absolute;
+    top: 12px;
+    right: 10px;
+}

@@ -159,27 +159,31 @@ ul.cart li img {
     font-weight: 500;
     text-decoration: none;
 }
+.go_to_cart{
+    background-color: transparent;
+    border: none;
+    color: white;
+    font-size: 18px;
+    line-height: 27px;
+    font-weight: 700;
+    cursor: pointer;
+}
 
-.nav_menu li a {
+.nav_link{
     padding: 0.4rem 1rem;
     border-radius: 120px;
+    transition: background-color 0.2s ease-in;
 }
 
-.nav_menu li a:hover {
+.nav_link.active{
     background-color: #FC8A06;
-    color: white;
-}
-
-.nav_menu li a.active {
-    text-decoration: none;
-    background-color: #FC8A06;
-    padding: 0.4rem 1rem;
     border-radius: 120px;
     font-size: 18px;
     line-height: 27px;
     font-weight: 500;
     color: white;
 }
+
 
 .underline_none {
     text-decoration: none;
@@ -251,6 +255,22 @@ ul.cart li img {
     line-height: 24px;
     font-weight: 600;
     color: white;
+    position: relative;
+}
+
+.cart_badge{
+    position: absolute;
+    top: 3px;
+    left: 37%;
+    height: 1.5rem;
+    width: 1.5rem;
+    border-radius: 50%;
+    font-size: 12px;
+    background-color: white;
+    color: black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .items_at_cart img {
@@ -258,13 +278,25 @@ ul.cart li img {
     width: 45px;
 }
 
+@media screen and (max-width:1300px) {
+    .nav_menu li {
+        font-size: 12px;
+    }
+
+    .nav_menu ul {
+        gap: 0.5rem;
+    }
+}
+
 @media screen and (max-width:1024px) {
     .navbar {
         border-bottom: 1px solid gray;
     }
+
     nav {
         display: none;
     }
+
     .nav_menu {
         padding: 5rem 1rem 1rem;
         position: absolute;
@@ -278,85 +310,38 @@ ul.cart li img {
         align-items: flex-start;
         transition: top 0.3s ease-in-out;
     }
+
     .nav_menu ul {
         flex-wrap: wrap;
     }
+
     .nav_menu li {
         font-size: 12px;
     }
+
     .nav_menu li a.active {
         font-size: 14px;
     }
+
     .auth_buttons {
         border-radius: 120px;
         padding: 0.6rem 1.3rem;
         gap: 0.3rem;
         font-size: 14px;
     }
+
     .menu_bar {
         display: block;
         cursor: pointer;
     }
+
     .close_btn {
         display: block;
         cursor: pointer;
         z-index: 60;
     }
+
     .user_n_cart {
         display: block;
     }
 }
-
-
-.modal_overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.808);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 1000;
-  }
-  
-  .modal {
-    min-height: 200px;
-    max-width: 400px;
-    background: white;
-    padding: 20px;
-    border-radius: 8px;
-    text-align: center;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-  }
-  
-  .modal_actions {
-    display: flex;
-    justify-content: center;
-    gap: 10px;
-    margin-top: 15px;
-  }
-  
-  .confirm {
-    background: #f44336;
-    color: white;
-    padding: 8px 16px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-  }
-  
-  .cancel {
-    background: #4caf50;
-    color: white;
-    padding: 8px 16px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-  }
-  
