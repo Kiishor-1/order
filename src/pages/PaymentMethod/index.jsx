@@ -19,7 +19,7 @@ import AddPayment from '../../components/common/Modal/AddPayment';
 export default function PaymentMethod() {
     const navigate = useNavigate();
     const dispatch = useDispatch();
-    const { items, totalPrice } = useSelector((state) => state.cart);
+    const { items, totalPrice , orderDetail} = useSelector((state) => state.cart);
 
     const wallet = {
         id: 0,
@@ -39,14 +39,14 @@ export default function PaymentMethod() {
     const [addModal, setAddModal] = useState(false);
     const [selectedCard, setSelectedCard] = useState(null);
 
-    const handlePayment = () => {
+    const handlePayment =async () => {
         if (!selectedCard) {
             toast.error('Please select a payment method');
             return;
         }
 
         const toastId = toast.loading('Making Payment');
-        setTimeout(() => {
+        setTimeout(async() => {
             toast.dismiss(toastId);
 
             if (selectedCard.custom) {
@@ -55,11 +55,11 @@ export default function PaymentMethod() {
             } else {
                 toast.success(`Payment done with: ${selectedCard.card}`);
             }
-
-            dispatch(clearCart());
+            console.log(orderDetail)
+            await dispatch(clearCart()).unwrap();
             navigate('/order-placed');
         }, 3000);
-    };
+    };    
 
     return (
         <div className={`${Styles.payment_method} container`}>

@@ -92,3 +92,17 @@ main.main .make_payment{
 .custom_cards{
     margin: 1rem 0;
 }
+
+@media screen and (max-width:768px) {
+    .payment_method{
+        height: fit-content;
+    }
+    .main{
+        flex-direction: column;
+        padding: 1rem;
+    }
+
+    .payment_cards_section,.proceed_payment{
+        width: 100%;
+    }
+}

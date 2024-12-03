@@ -1,31 +1,50 @@
+import { useState, useEffect, useRef } from 'react';
 import Styles from './CustomerReviews.module.css';
 import Back from '../../../assets/images/Back.svg';
 import ReviewCard from './ReviewCard';
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
-import { useRef } from 'react';
 import Review from '../../common/Review';
+import { fetchCustomerReviews } from '../../../services/operations/reviewApi';
 
 export default function CustomerReviews() {
+  const [reviews, setReviews] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
   const swiperRef = useRef(null);
 
   const slideNext = () => {
     if (swiperRef.current) {
-      swiperRef.current.slideNext(); // Move to the next slide
+      swiperRef.current.slideNext();
     }
   };
 
   const slidePrev = () => {
     if (swiperRef.current) {
-      swiperRef.current.slidePrev(); // Move to the previous slide
+      swiperRef.current.slidePrev();
     }
   };
-  
+
   const customReview = {
-    rating:3.5,
-    review:4500
-  }
+    rating: 3.5,
+    review: 4500
+  };
+
+  useEffect(() => {
+    const loadReviews = async () => {
+      try {
+        const data = await fetchCustomerReviews();
+        setReviews(data);
+      } catch (err) {
+        setError(err.message);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    loadReviews();
+  }, []);
 
   return (
     <div className={Styles.review_section}>
@@ -42,35 +61,32 @@ export default function CustomerReviews() {
           </aside>
         </section>
         <section className={Styles.review_slider}>
-          <Swiper
-            onSwiper={(swiper) => (swiperRef.current = swiper)} // Store Swiper instance in ref
-            loop={true}
-            pagination={{ clickable: true }}
-            breakpoints={{
-              1024: {
-                slidesPerView: 3,
-                spaceBetween: 30,
-              },
-              992: {
-                slidesPerView: 2,
-                spaceBetween: 40,
-              },
-              768: {
-                slidesPerView: 1,
-                spaceBetween: 20,
-              },
-            }}
-          >
-            {[...Array(5)].map((_, idx) => (
-              <SwiperSlide key={idx}>
-                <ReviewCard />
-              </SwiperSlide>
-            ))}
-          </Swiper>
+          {loading ? (
+            <p>Loading...</p>
+          ) : error ? (
+            <p className={Styles.error}>{error}</p>
+          ) : (
+            <Swiper
+              onSwiper={(swiper) => (swiperRef.current = swiper)}
+              loop={true}
+              pagination={{ clickable: true }}
+              breakpoints={{
+                1024: { slidesPerView: 3, spaceBetween: 30 },
+                992: { slidesPerView: 2, spaceBetween: 40 },
+                768: { slidesPerView: 1, spaceBetween: 20 },
+              }}
+            >
+              {reviews.map((review, idx) => (
+                <SwiperSlide key={idx}>
+                  <ReviewCard data={review} />
+                </SwiperSlide>
+              ))}
+            </Swiper>
+          )}
         </section>
       </div>
       <div className={Styles.custom_review}>
-        <Review data={customReview}/>
+        <Review data={customReview} />
       </div>
     </div>
   );

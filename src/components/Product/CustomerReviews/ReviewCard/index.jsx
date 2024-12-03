@@ -2,16 +2,7 @@ import Styles from './ReviewCard.module.css'
 import Customer from '../../../../assets/images/Customer.png';
 import Clock from '../../../../assets/images/Clock.svg';
 import ReactStars from 'react-stars';
-export default function ReviewCard() {
-    const reviewItem = {
-        user:{
-            name:"User",
-            address:"Address",
-        },
-        rating:3.6,
-        content:"Lorem ipsum dolor, sit amet consectetur adipisicing elit.Dolores, rem dolore, esse doloremque repudiandae ipsam, nostrum numquam incidunt quod modi natus quam tenetur a impedit consequuntur. Inventore illum dolorem dignissimos?",
-        createdAt:"30th Novermber, 2024"
-    }
+export default function ReviewCard({data:reviewItem}) {
     return (
         <div className={Styles.review_card}>
             <section className={Styles.card_header}>
@@ -40,7 +31,7 @@ export default function ReviewCard() {
             <section className={Styles.review_info}>
                 <p>
                     {
-                        reviewItem.content.length > 150 && reviewItem.content.substring(0,150)
+                        reviewItem.content.length > 150 ? reviewItem.content.substring(0,150):reviewItem?.content
                     }
                 </p>
             </section>

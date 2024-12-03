@@ -35,15 +35,21 @@ section.card_header{
     font-weight: 400;
 }
 
-.rating_date p{
-    font-size: 15px;
+.rating_date{
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.rating_date span{
+    font-size: 11px;
     line-height: 21px;
     font-weight: 400;
 }
 
 .rating_date img{
-    width: 23px;
-    height: 23px;
+    width: 17px;
+    height: 17px;
 }
 
 .review_info p{

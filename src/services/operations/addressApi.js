@@ -50,7 +50,6 @@ export const addAddress = async (address) => {
     }
 };
 
-// Update an existing address
 export const updateAddress = async (address) => {
     const token = getToken();
     if (!token) throw new Error("No token found in localStorage");

@@ -7,18 +7,21 @@ import toast from 'react-hot-toast';
 
 export default function OrderPlaced() {
   const navigate = useNavigate();
-  const { orderDetail } = useSelector((state) => state.cart);
+  const { orderDetail, items } = useSelector((state) => state.cart);
   const { user, token } = useSelector((state) => state.auth);
   console.log(orderDetail)
   useEffect(() => {
     if (!user && !token) {
       navigate('/login');
     }
+  }, [navigate, user, token])
+
+  useEffect(() => {
     if (orderDetail.length === 0) {
       // toast.error('Add some items to basket');
       navigate('/');
     }
-  }, [navigate, user, token, orderDetail])
+  }, [navigate, orderDetail])
 
   return (
     <div className={`${Styles.order_placed} container`}>
@@ -31,9 +34,9 @@ export default function OrderPlaced() {
         <div className="">
           {
             orderDetail.length > 0 &&
-            orderDetail.map((item) => (
-              <p key={item.id} className={Styles.item_details}>
-                {item.name}
+            orderDetail.map((item,id) => (
+              <p key={id} className={Styles.item_details}>
+                {item?.foodItem?.name}
               </p>
             ))
           }

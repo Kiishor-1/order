@@ -176,3 +176,14 @@
     font-weight: 600;
     margin: 1rem 0;
 }
+
+@media screen and (max-width:768px) {
+    .main{
+        flex-direction: column;
+        padding: 1rem;
+    }
+
+    .ordered_items,.billing{
+        width: 100%;
+    }
+}

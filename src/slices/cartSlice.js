@@ -18,9 +18,8 @@ const getHeaders = (token) => ({
   Accept: 'application/json',
 });
 
-// Async Thunks
 export const fetchCart = createAsyncThunk('cart/fetchCart', async (_, { getState, rejectWithValue }) => {
-  const token = getState().auth.token; // Fetch token from auth state
+  const token = getState().auth.token;
   try {
     const response = await axios.get(CART_ENDPOINTS.FETCH_CART, { headers: getHeaders(token) });
     // console.log('rrrrespone',response)
@@ -59,10 +58,8 @@ export const addItemToCart = createAsyncThunk(
           toast.error(error.response.data?.error || "Failed to add item to cart");
         }
 
-        // Reject with the error response
         return rejectWithValue(error.response.data || "An error occurred");
       } else {
-        // If no response, handle general errors (like network issues)
         toast.error("Network error: Please check your connection.");
         return rejectWithValue("Network error: Please check your connection.");
       }
@@ -227,17 +224,24 @@ const cartSlice = createSlice({
         state.error = action.payload;
       })
 
-      // Clear Cart
       .addCase(clearCart.pending, (state) => {
         state.loading = true;
         state.error = null;
       })
       .addCase(clearCart.fulfilled, (state, action) => {
+        console.log('Clearing cart. Items:', state.items);
         state.loading = false;
-        state.orderDetail = [...state.items];
+    
+        // Ensure only unique items are stored in orderDetail
+        const uniqueItemsMap = new Map();
+        state.items.forEach(item => {
+            uniqueItemsMap.set(item.foodItem?._id || item.foodItem.toString(), item); // Use foodItem as a unique key
+        });
+        state.orderDetail = Array.from(uniqueItemsMap.values()); // Extract unique items
+    
         state.items = [];
         state.totalPrice = 0;
-      })
+    })       
       .addCase(clearCart.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload;

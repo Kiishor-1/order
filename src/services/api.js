@@ -30,3 +30,7 @@ export const CART_ENDPOINTS = {
     CREATE_SHARED_CART: `${BASE_URL}/users/cart/shared`,
     SYNC_CART:`${BASE_URL}/users/cart/sync`,
 };
+
+export const REVIEW_ENDPOINTS = {
+    FETCH_REVIEWS:`${BASE_URL}/reviews`,
+}

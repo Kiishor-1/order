@@ -57,7 +57,6 @@ export const fetchRestaurantDetails = createAsyncThunk(
     }
 );
 
-// Initial state
 const initialState = {
     restaurants: [],
     currentRestaurant: null,
