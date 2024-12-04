@@ -16,7 +16,7 @@ import { logoutUser } from '../../../slices/authSlice';
 import toast from 'react-hot-toast';
 import { fetchFirstRestaurant } from '../../../services/operations/restaurantApi';
 
-export default function Navbar({openModal, setOpenModal}) {
+export default function Navbar({ openModal, setOpenModal }) {
   const navMenuRef = useRef();
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -29,7 +29,7 @@ export default function Navbar({openModal, setOpenModal}) {
     const getRestaurant = async () => {
       try {
         const fetchedRestaurant = await fetchFirstRestaurant();
-        if(!fetchedRestaurant){
+        if (!fetchedRestaurant) {
           return;
         }
         setRestaurant(fetchedRestaurant);
@@ -88,8 +88,8 @@ export default function Navbar({openModal, setOpenModal}) {
   }
 
 
-  const toggleCart = ()=>{
-    setOpenModal((prev)=> !prev)
+  const toggleCart = () => {
+    setOpenModal((prev) => !prev)
   }
 
   return (
@@ -113,7 +113,7 @@ export default function Navbar({openModal, setOpenModal}) {
               <img className={Styles.basket} src={Basket} alt="cart image" />
               <button onClick={toggleCart} className={Styles.go_to_cart}> My Cart</button>
             </li>
-            <li>{items.length > 0 && items.length}</li>
+            <li>{items && items.length > 0 && items.length}</li>
             <li>
               <img className={Styles.arrow} src={Arrow} alt="" />
             </li>
@@ -175,7 +175,7 @@ export default function Navbar({openModal, setOpenModal}) {
             Hey {user ? user?.name.split(' ')[0] : 'User'}
           </div>
           <div className={Styles.items_at_cart} >
-          <span className={Styles.cart_badge}>{items.length}</span>
+           {items && items.length > 0 && <span className={Styles.cart_badge}>{items.length}</span>}
             <img src={Basket2} alt="" />
             <button onClick={toggleCart} className={Styles.go_to_cart}> My Cart</button>
           </div>

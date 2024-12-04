@@ -3,42 +3,60 @@ import Styles from "./Checkout.module.css";
 import ArrowLeft from "../../assets/images/arrowLeft.svg";
 import PopularRestaurants from "../../components/Home/PopularRestaurants";
 import { Link, useNavigate } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo } from "react";
 import MapPin from "../../assets/images/MapPin.svg";
 import PaymentCard from "../PaymentMethod/PaymentCard";
 import ArrowRight from "../../assets/images/ArrowRight.svg";
 import { syncCart } from "../../services/operations/sharableCartApi";
 import toast from "react-hot-toast";
 import { fetchCart } from "../../slices/cartSlice";
+import Spinner from "../../components/common/Spinner";
 
 export default function Checkout() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+
   const { user, token } = useSelector((state) => state.auth);
-  const { items, totalPrice } = useSelector((state) => state.cart);
-  const [addresses, setAddresses] = useState([]);
-  const [defaultAddress, setDefaultAddress] = useState(null);
+  const { items, totalPrice, loading } = useSelector((state) => state.cart);
+
+  const defaultAddress = useMemo(() => {
+    if (user?.addresses?.length) {
+      return user.addresses.find(
+        (addr) => addr.isDefault === true || addr.isDefault === "true"
+      );
+    }
+    return null;
+  }, [user]);
+
+  const addresses = useMemo(() => user?.addresses || [], [user]);
+
+  const subtotal = useMemo(() => totalPrice + 10 + 3 - items.length, [
+    totalPrice,
+    items.length,
+  ]);
 
   useEffect(() => {
     if (!user && !token) {
       navigate("/login");
     }
   }, [navigate, user, token]);
-  useEffect(() => {
-    if (user?.addresses && user.addresses.length > 0) {
-      setAddresses(user.addresses);
-      const defaultAddr = user.addresses.find(
-        (addr) => addr.isDefault === true || addr.isDefault === "true"
-      );
-      setDefaultAddress(defaultAddr || null);
-    } else {
-      setAddresses([]);
-      setDefaultAddress(null);
-    }
-  }, [user]);
 
-  console.log("User:", user);
-  console.log("Default Address:", defaultAddress);
+  useEffect(() => {
+    const syncAndFetchCart = async () => {
+      if (user && token) {
+        const localCart = JSON.parse(localStorage.getItem("cart")) || [];
+        if (localCart.length > 0) {
+          try {
+            await syncCart(token, localCart);
+          } catch (err) {
+            toast.error("Sync failed. Please try again later");
+          }
+        }
+        dispatch(fetchCart());
+      }
+    };
+    syncAndFetchCart();
+  }, [user, token, dispatch]);
 
   const data = {
     icon1: MapPin,
@@ -49,21 +67,24 @@ export default function Checkout() {
       : "No default address selected",
   };
 
-
   const findPaymentOptions = async () => {
     if (items) {
       try {
         const updatedCart = await syncCart(token, items);
         if (updatedCart) {
           dispatch(fetchCart());
-          navigate('/payment-methods');
+          navigate("/payment-methods");
         }
       } catch (err) {
-        toast.error(err.message || 'Try again later');
+        toast.error(err.message || "Try again later");
       }
     }
   };
-  
+
+  if (loading) {
+    return <Spinner />;
+  }
+
   return (
     <div className={`${Styles.checkout} container`}>
       <h3>
@@ -77,8 +98,9 @@ export default function Checkout() {
               items.map((item, id) => (
                 <div
                   key={id}
-                  className={`${Styles.item} ${id < items.length - 1 && Styles.seperator
-                    }`}
+                  className={`${Styles.item} ${
+                    id < items.length - 1 && Styles.seperator
+                  }`}
                 >
                   <img src={item?.foodItem?.image} alt={item.name} />
                   <div>
@@ -101,38 +123,42 @@ export default function Checkout() {
             </label>
           )}
         </section>
-        <section className={Styles.billing}>
-          <Link to={"/address"}>
-            <PaymentCard data={data} cardFlag={true} utilFlag={true} />
-          </Link>
-          <div className={Styles.sum_total}>
-            <p>
-              <span className={Styles.key}>Items</span>
-              <span className={Styles.value}>₹{totalPrice || 0}</span>
-            </p>
-            <p>
-              <span className={Styles.key}>Sales Tax</span>
-              <span className={Styles.value}>₹{items.length > 0 ? 10 : 0}</span>
-            </p>
-            <p>
-              <span className={Styles.key}>Discount</span>
-              <span className={Styles.value}>-₹{items.length}</span>
-            </p>
-            <p>
-              <span className={Styles.key}>Delivery fee</span>
-              <span className={Styles.value}>₹{items.length > 0 ? 3 : 0}</span>
-            </p>
-          </div>
-          <p className={Styles.sub_total}>
-            <span className={Styles.key}>Subtotal ({items.length} items)</span>
+       {
+        items && items.length > 0 && <section className={Styles.billing}>
+        <Link to={"/address"}>
+          <PaymentCard data={data} cardFlag={true} utilFlag={true} />
+        </Link>
+        <div className={Styles.sum_total}>
+          <p>
+            <span className={Styles.key}>Items</span>
+            <span className={Styles.value}>₹{totalPrice || 0}</span>
+          </p>
+          <p>
+            <span className={Styles.key}>Sales Tax</span>
             <span className={Styles.value}>
-              ₹{totalPrice + 10 + 3 - items.length}
+              ₹{items.length > 0 ? 10 : 0}
             </span>
           </p>
-          <button onClick={findPaymentOptions}>
-            Choose Payment Method
-          </button>
-        </section>
+          <p>
+            <span className={Styles.key}>Discount</span>
+            <span className={Styles.value}>-₹{items.length}</span>
+          </p>
+          <p>
+            <span className={Styles.key}>Delivery fee</span>
+            <span className={Styles.value}>
+              ₹{items.length > 0 ? 3 : 0}
+            </span>
+          </p>
+        </div>
+        <p className={Styles.sub_total}>
+          <span className={Styles.key}>
+            Subtotal ({items.length} items)
+          </span>
+          <span className={Styles.value}>₹{subtotal}</span>
+        </p>
+        <button onClick={findPaymentOptions}>Choose Payment Method</button>
+      </section>
+       }
       </main>
       <PopularRestaurants heading={"Similar Restaurants"} />
     </div>

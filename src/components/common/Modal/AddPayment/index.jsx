@@ -36,7 +36,6 @@ export default function AddPayment({ setPayment, onClose }) {
                 expiration: formData?.expiration
             },
         ]);
-        console.log(formData)
         setFormData(initialData)
         onClose(false);
     };

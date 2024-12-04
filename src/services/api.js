@@ -34,3 +34,8 @@ export const CART_ENDPOINTS = {
 export const REVIEW_ENDPOINTS = {
     FETCH_REVIEWS:`${BASE_URL}/reviews`,
 }
+
+export const USER_ENDPONTS = {
+    GET_USER:`${BASE_URL}/users`,
+    EDIT_USER:`${BASE_URL}/users`,
+}

@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
 import ArrowLeft from '../../assets/images/arrowLeft.svg';
 import EditIcon from '../../assets/images/EditIcon.svg';
-import CreditCard from '../../assets/images/Credit.svg'
-import Plus from '../../assets/images/SimplePlus.svg'
+import CreditCard from '../../assets/images/Credit.svg';
+import Plus from '../../assets/images/SimplePlus.svg';
 import Male from '../../assets/images/Male.png';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
@@ -13,23 +13,18 @@ import UpdatePayment from '../../components/common/Modal/UpdatePayment';
 import AddPayment from '../../components/common/Modal/AddPayment';
 import { logoutUser } from '../../slices/authSlice';
 import Logout from '../../components/common/Modal/Logout';
+import { getUserDetails, editUserDetails } from '../../services/operations/userApi';
 
 export default function Profile() {
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const { user, token } = useSelector((state) => state.auth);
 
-    useEffect(() => {
-        if (!user && !token) {
-            navigate('/login');
-        }
-    }, [navigate, user, token]);
-
     const [formData, setFormData] = useState({
-        name: "Andrew Garfield",
-        email: "andrew@gmail.com",
-        gender: "Male",
-        country: "USA",
+        name: "",
+        email: "",
+        gender: "",
+        country: "",
     });
 
     const [edit, setEdit] = useState(false);
@@ -37,6 +32,29 @@ export default function Profile() {
     const [editingCard, setEditingCard] = useState(null);
     const [editModal, setEditModal] = useState(false);
     const [addModal, setAddModal] = useState(false);
+    const [isModalOpen, setIsModalOpen] = useState(false);
+
+    useEffect(() => {
+        if (!user && !token) {
+            navigate('/login');
+        } else {
+            // Fetch user details
+            const fetchUserDetails = async () => {
+                try {
+                    const data = await getUserDetails(user.id, token);
+                    setFormData({
+                        name: data.user.name,
+                        email: data.user.email,
+                        gender: data.user.gender,
+                        country: data.user.country,
+                    });
+                } catch (error) {
+                    toast.error("Failed to fetch user details.");
+                }
+            };
+            fetchUserDetails();
+        }
+    }, [navigate, user, token]);
 
     const handleEdit = () => setEdit(!edit);
 
@@ -48,19 +66,23 @@ export default function Profile() {
         }));
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log(formData);
-        setEdit(false);
+        try {
+            const updatedUser = await editUserDetails(user.id, formData, token);
+            setFormData(updatedUser.user);
+            toast.success("Profile updated successfully.");
+            setEdit(false);
+        } catch (error) {
+            toast.error("Failed to update profile.");
+        }
     };
-
 
     const handleEditCard = (index) => {
         setEditingCard(index);
         setEditModal(true);
     };
 
-    const [isModalOpen, setIsModalOpen] = useState(false);
     const handleLogoutConfirm = () => {
         dispatch(logoutUser());
         setIsModalOpen(false);
@@ -70,13 +92,12 @@ export default function Profile() {
         setIsModalOpen(false);
     };
 
-
     return (
         <div className={`${Styles.profile} container`}>
             <h3 className={Styles.header}>
                 <section>
                     <div className=""><img src={ArrowLeft} alt="" />My Profile</div>
-                    <button onClick={()=>setIsModalOpen(true)} className={Styles.logout_user}>Log out</button>
+                    <button onClick={() => setIsModalOpen(true)} className={Styles.logout_user}>Log out</button>
                 </section>
             </h3>
             <main className={Styles.main}>
@@ -87,7 +108,7 @@ export default function Profile() {
                                 <img src={Male} alt="" />
                                 <div className={Styles.username}>User</div>
                             </aside>
-                            <button onClick={handleEdit}>Save</button>
+                            <button type="submit">Save</button>
                         </section>
                         <section className={Styles.update_user_details}>
                             <label htmlFor="name">
@@ -164,7 +185,6 @@ export default function Profile() {
             </main>
             <hr />
             <section className={Styles.payment_methods}>
-
                 <p>Saved Payment Methods</p>
                 <div className={Styles.payment_options}>
                     {payment.length > 0 &&
@@ -190,8 +210,7 @@ export default function Profile() {
                     </button>
                 </div>
             </section>
-            {
-                editModal &&
+            {editModal && (
                 <Modal onClose={setEditModal}>
                     <UpdatePayment
                         payment={payment}
@@ -201,27 +220,23 @@ export default function Profile() {
                         onClose={setEditModal}
                     />
                 </Modal>
-            }
-            {
-                addModal &&
+            )}
+            {addModal && (
                 <Modal onClose={setAddModal}>
                     <AddPayment
                         setPayment={setPayment}
                         onClose={setAddModal}
                     />
                 </Modal>
-            }
-            {
-                isModalOpen && 
+            )}
+            {isModalOpen && (
                 <Modal>
                     <Logout
                         handleLogoutCancel={handleLogoutCancel}
                         handleLogoutConfirm={handleLogoutConfirm}
                     />
                 </Modal>
-            }
+            )}
         </div>
     );
 }
-
-

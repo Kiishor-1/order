@@ -18,7 +18,6 @@ export default function UpdateAddress({address, onUpdate,onClose }) {
         }
     }, [address]);
 
-    console.log(formData)
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -31,7 +30,6 @@ export default function UpdateAddress({address, onUpdate,onClose }) {
             alert('Please fill in all fields');
             return;
         }
-        console.log(formData)
         onUpdate(formData);
     };
 

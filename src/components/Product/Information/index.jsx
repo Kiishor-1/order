@@ -59,7 +59,6 @@ export default function Information() {
                                 return <li className={Styles.precaution} key={itemIndex}>{item}</li>;
                             }
 
-                            // Otherwise, render key-value pairs for objects
                             return (
                                 <li key={itemIndex}>
                                     <strong>{item.key}: </strong>

@@ -55,7 +55,6 @@ export default function PaymentMethod() {
             } else {
                 toast.success(`Payment done with: ${selectedCard.card}`);
             }
-            console.log(orderDetail)
             await dispatch(clearCart()).unwrap();
             navigate('/order-placed');
         }, 3000);

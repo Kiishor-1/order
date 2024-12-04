@@ -4,7 +4,6 @@ import Styles from '../AddPayment/AddPayment.module.css'
 import Cross from '../../../../assets/images/PlusCircle.svg';
 
 export default function UpdatePayment({ payment, setPayment, editingCard, setEditingCard, onClose }) {
-    console.log(payment)
     const [formData, setFormData] = useState({
         name: '',
         cardNumber: '',

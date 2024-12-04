@@ -16,8 +16,6 @@ export function fetchSharedCart(sharedCartId) {
 
       const result = response.data.data;
 
-      console.log('result', response.data.data)
-
       toast.success("Shared cart loaded successfully", { id: toastId });
 
       dispatch(addSharedCartToCart(result));
@@ -50,7 +48,6 @@ export async function createSharedCart(token, cartData) {
     }
 
     result = response.data.data;
-    // toast.success("Shared cart created successfully!");
   } catch (error) {
     console.error("Error creating shared cart:", error);
     toast.error("Could not create the shared cart.");
@@ -79,7 +76,7 @@ export async function syncCart(token, currentCartItems) {
       return null;
     }
 
-    // toast.success("Cart synced successfully", { id: toastId });
+
     return response.data.data;
   } catch (error) {
     console.error("Error syncing the cart:", error);

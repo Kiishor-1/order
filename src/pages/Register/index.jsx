@@ -59,7 +59,6 @@ export default function Register() {
     }
 
     if (Object.keys(newErrors).length === 0) {
-      console.log(formData)
       dispatch(registerUser(formData))
         .then((result) => {
           if (result.type === 'auth/registerUser/fulfilled') {

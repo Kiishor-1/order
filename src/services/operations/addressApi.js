@@ -9,12 +9,10 @@ const {
     SET_DEFAULT_ADDRESS,
 } = ADDRESS_ENDPOINTS;
 
-// Function to get token from localStorage
 const getToken = () => {
-    return localStorage.getItem("token"); // Assuming the token is stored with the key 'token'
+    return localStorage.getItem("token"); 
 };
 
-// Fetch all addresses for a user
 export const fetchAllAddresses = async () => {
     const token = getToken();
     if (!token) throw new Error("No token found in localStorage");
@@ -26,14 +24,12 @@ export const fetchAllAddresses = async () => {
                 Authorization: `Bearer ${token}`,
             },
         });
-        console.log(response.data)
         return response.data.data;
     } catch (error) {
         throw error.response?.data?.message || "Error fetching addresses";
     }
 };
 
-// Add a new address
 export const addAddress = async (address) => {
     const token = getToken();
     if (!token) throw new Error("No token found in localStorage");
@@ -66,7 +62,7 @@ export const updateAddress = async (address) => {
     }
 };
 
-// Delete an address
+
 export const deleteAddress = async (addressId) => {
     const token = getToken();
     if (!token) throw new Error("No token found in localStorage");
@@ -83,7 +79,6 @@ export const deleteAddress = async (addressId) => {
     }
 };
 
-// Set an address as default
 export const setDefaultAddress = async (addressId) => {
     const token = getToken();
     if (!token) throw new Error("No token found in localStorage");

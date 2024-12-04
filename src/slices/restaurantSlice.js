@@ -19,10 +19,7 @@ export const fetchRestaurants = createAsyncThunk(
                 return rejectWithValue(response?.data?.error || "Failed to fetch restaurants");
             }
 
-            console.log(response.data);
-
             toast.dismiss(toastId);
-            // toast.success("Restaurants fetched successfully");
             return response.data.restaurants;
         } catch (error) {
             toast.dismiss(toastId);
@@ -47,7 +44,6 @@ export const fetchRestaurantDetails = createAsyncThunk(
             }
 
             toast.dismiss(toastId);
-            // toast.success("Restaurant details fetched successfully");
             return response.data.restaurant;
         } catch (error) {
             toast.dismiss(toastId);
@@ -65,14 +61,13 @@ const initialState = {
     status: "idle",
 };
 
-// Slice
+
 const restaurantSlice = createSlice({
     name: "restaurant",
     initialState,
     reducers: {},
     extraReducers: (builder) => {
         builder
-            // Fetch all restaurants
             .addCase(fetchRestaurants.pending, (state) => {
                 state.isLoading = true;
                 state.error = null;
@@ -88,7 +83,6 @@ const restaurantSlice = createSlice({
                 state.status = "failed";
             })
 
-            // Fetch specific restaurant details
             .addCase(fetchRestaurantDetails.pending, (state) => {
                 state.isLoading = true;
                 state.error = null;

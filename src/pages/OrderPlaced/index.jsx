@@ -9,7 +9,6 @@ export default function OrderPlaced() {
   const navigate = useNavigate();
   const { orderDetail, items } = useSelector((state) => state.cart);
   const { user, token } = useSelector((state) => state.auth);
-  console.log(orderDetail)
   useEffect(() => {
     if (!user && !token) {
       navigate('/login');
@@ -18,7 +17,6 @@ export default function OrderPlaced() {
 
   useEffect(() => {
     if (orderDetail.length === 0) {
-      // toast.error('Add some items to basket');
       navigate('/');
     }
   }, [navigate, orderDetail])

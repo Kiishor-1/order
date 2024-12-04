@@ -7,10 +7,9 @@ import ForwardGreen from "../../../assets/images/ForwardGreen.svg";
 import ForwardDarkGreen from "../../../assets/images/ForwardDarkGreen.svg";
 import Share from "../../../assets/images/share.svg";
 import toast from "react-hot-toast";
-import { createSharedCart } from "../../../services/operations/sharableCartApi"; // Import service
+import { createSharedCart } from "../../../services/operations/sharableCartApi";
 
 export default function MiniBasket({ isMobile, closeCart, handleRemoveFromCart,restaurantId ,items,totalPrice}) {
-    // const { items, totalPrice } = useSelector((state) => state.cart);
     const { token , user} = useSelector((state) => state.auth);
 
     const handleCopyLink = async () => {
@@ -23,11 +22,10 @@ export default function MiniBasket({ isMobile, closeCart, handleRemoveFromCart,r
             return;
         }
     
-        const cartData = { items }; // Send cart items as the request body
-        const sharedCart = await createSharedCart(token, cartData); // Create shared cart using the API
+        const cartData = { items };
+        const sharedCart = await createSharedCart(token, cartData);
     
         if (sharedCart) {
-            // Include restaurantId in the shared cart link
             const cartLink = `${window.location.origin}/cart/${restaurantId}/${sharedCart._id}`; 
             navigator.clipboard
                 .writeText(cartLink)
@@ -41,9 +39,6 @@ export default function MiniBasket({ isMobile, closeCart, handleRemoveFromCart,r
         }
     };
 
-
-
-    
 
     return (
         <aside className={`${Styles.mini_basket} ${isMobile ? Styles.mobile : ""}`}>

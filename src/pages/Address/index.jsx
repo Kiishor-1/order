@@ -39,7 +39,6 @@ export default function Address() {
             const allAddresses = await fetchAllAddresses();
             setAddresses(allAddresses);
 
-            // Find the default address
             const defaultAddress = allAddresses.find((addr) => addr.isDefault);
             if (defaultAddress) {
                 setDefaultAddressId(defaultAddress._id);
@@ -51,9 +50,9 @@ export default function Address() {
 
     const handleAddAddress = async (newAddress) => {
         try {
-            await addAddress(newAddress); // Add the address using the API
-            const updatedAddresses = await fetchAllAddresses(); // Fetch the updated list of addresses
-            setAddresses(updatedAddresses); // Update the state with the new list
+            await addAddress(newAddress); 
+            const updatedAddresses = await fetchAllAddresses(); 
+            setAddresses(updatedAddresses); 
             setAddModal(false);
             toast.success('Address added');
         } catch (error) {
@@ -80,7 +79,7 @@ export default function Address() {
             await deleteAddress(addressId);
             setAddresses((prev) => prev.filter((addr) => addr._id !== addressId));
             if (addressId === defaultAddressId) {
-                setDefaultAddressId(null); // Reset default if it is removed
+                setDefaultAddressId(null); 
             }
             toast.success('Address removed');
         } catch (error) {
@@ -90,8 +89,8 @@ export default function Address() {
 
     const handleSetDefault = async (addressId) => {
         try {
-            await setDefaultAddress(addressId); // Update the default address in the database
-            setDefaultAddressId(addressId); // Update the UI state
+            await setDefaultAddress(addressId); 
+            setDefaultAddressId(addressId); 
             toast.success('Default address set');
         } catch (error) {
             toast.error(error);

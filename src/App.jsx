@@ -21,7 +21,6 @@ function App() {
   const isAuthPage =
     location.pathname === "/login" || location.pathname === "/register";
 
-  // Dynamically track viewport size
   useEffect(() => {
     const handleResize = () => {
       setIsMobile(window.innerWidth <= 768);

@@ -1,13 +1,13 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { addItemToCart } from '../../../slices/cartSlice'; // asyncThunk for adding item
+import { addItemToCart } from '../../../slices/cartSlice';
 import Styles from './FoodItem.module.css';
 import Plus from '../../../assets/images/Plus.svg';
 
-export default function FoodItem({ data, restaurantId }) {
+export default function FoodItem({ data, }) {
     const dispatch = useDispatch();
 
     const handleAddToCart = () => {
-        dispatch(addItemToCart({ ...data, restaurantId }));
+        dispatch(addItemToCart({ ...data }));
     };
 
     return (

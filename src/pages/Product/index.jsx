@@ -62,7 +62,6 @@ export default function Product({ openModal, setOpenModal, isMobile }) {
         }
     }, [items, isMobile, setOpenModal]);
 
-    // console.log('items', items)
 
     const filterFoodItemsByCategory = (itemType) => {
         return restaurant?.foodItems?.filter(
@@ -73,6 +72,7 @@ export default function Product({ openModal, setOpenModal, isMobile }) {
     };
 
     const handleRemoveFromCart = (id) => {
+        console.log('ididi',id)
         dispatch(removeItemFromCart({ id }));
         setOnUpdate(true)
     };
@@ -139,7 +139,7 @@ export default function Product({ openModal, setOpenModal, isMobile }) {
                     </div>
                 </main>
 
-                {items.length > 0 && openModal && (
+                {items && items.length > 0 && openModal && (
                     <MiniBasket
                         isMobile={isMobile}
                         closeCart={closeCart}
@@ -161,3 +161,7 @@ export default function Product({ openModal, setOpenModal, isMobile }) {
         </div>
     );
 }
+
+
+
+

@@ -53,7 +53,6 @@ export default function Login() {
       toast.error(firstError);
     }
     if (Object.keys(newErrors).length === 0) {
-      console.log(formData);
 
       setIsLoading(true);
       try {
