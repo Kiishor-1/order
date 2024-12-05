@@ -10,10 +10,15 @@
 }
 
 .cards {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: repeat(6,1fr);
     gap: 0.79rem;
+}
+
+@media screen and (max-width:1024px) {
+    .cards{
+        grid-template-columns: repeat(4, 1fr);
+    }
 }
 
 @media screen and (max-width:992px) {
@@ -24,28 +29,13 @@
         font-size: 16px;
         line-height: 24px;
     }
+    .cards{
+        grid-template-columns: repeat(3,1fr);
+    }
 }
 
-/* @media screen and (max-width: 768px) {
-    .popular_restaurants {
-        overflow: hidden;
-    }
-
+@media screen and (max-width: 768px) {
     .cards {
-        justify-content: flex-start;
-        overflow-x: auto;
-        display: grid;
-        grid-template-columns: repeat(6, 1fr);
-        gap: 1rem;
-        scroll-snap-type: x mandatory;
+        grid-template-columns: repeat(2, 1fr);
     }
-
-    .cards::-webkit-scrollbar {
-        display: none;
-    }
-
-
-    .cards {
-        -webkit-overflow-scrolling: touch;
-    }
-} */
+}

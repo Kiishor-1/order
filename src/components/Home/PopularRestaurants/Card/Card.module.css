@@ -1,9 +1,9 @@
 .card{
-    width: 212px;
+    width: 100%;
     background-color: #FC8A06;
     color: white;
-    border: 1px solid gainsboro;
-    border-radius: 12px;
+    /* border: 1px solid gainsboro; */
+    border-radius: 20px;
     text-decoration: none;
 }
 
@@ -20,9 +20,6 @@
 }
 
 @media screen and (max-width:768px) {
-    .card{
-        width: 130px !important;
-    }
     .thumbnail{
         width: 100%;
     }

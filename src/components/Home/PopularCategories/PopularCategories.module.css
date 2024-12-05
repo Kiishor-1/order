@@ -11,11 +11,23 @@
 }
 
 .cards {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
     flex-wrap: wrap;
     gap: 0.79rem;
+}
+
+
+
+@media screen and (max-width:1300px) {
+    .cards{
+        grid-template-columns: repeat(5,1fr);
+    }
+}
+@media screen and (max-width:1024px) {
+    .cards{
+        grid-template-columns: repeat(4,1fr);
+    }
 }
 
 @media screen and (max-width:992px) {
@@ -27,5 +39,17 @@
     .heading {
         font-size: 16px;
         line-height: 24px;
+    }
+
+    .cards{
+        width: 100%;
+        min-width: 350px;
+        grid-template-columns: repeat(3,1fr);
+    }
+}
+
+@media screen and (max-width:768px) {
+    .cards{
+        grid-template-columns: repeat(2, 1fr);
     }
 }

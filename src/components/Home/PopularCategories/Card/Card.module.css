@@ -1,8 +1,8 @@
 .card{
-    width: 212px;
     background-color: #F5F5F5;
-    border: 1px solid gainsboro;
-    border-radius: 12px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
 }
 
 .thumbnail{
@@ -22,4 +22,24 @@
     font-weight:400;
     color: #FC8A06;
     padding: 0 0.8rem 0.5rem;
+}
+
+@media screen and (max-width:768px) {
+    .card .title{
+        font-size: 13px;
+        line-height: 19.5px;
+        color: #FC8A06;
+        font-weight: 700;
+    }
+    .card .stats{
+        color: white;
+    }
+
+    .card_body{
+        background-color: #03081F;
+        flex: 1;
+        border-bottom-left-radius: 12px;
+        border-bottom-right-radius: 12px;
+        padding: 0.6rem;
+    }
 }
