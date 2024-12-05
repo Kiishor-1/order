@@ -25,6 +25,9 @@
 }
 
 @media screen and (max-width:768px) {
+    .card{
+        width: fit-content;
+    }
     .card .title{
         font-size: 12px;
         line-height: 19.5px;

@@ -1,5 +1,4 @@
 .popular_categories {
-    /* padding: 1rem; */
     margin-bottom: 2rem;
 }
 
@@ -43,7 +42,6 @@
 
     .cards{
         width: 100%;
-        min-width: 350px;
         grid-template-columns: repeat(3,1fr);
     }
 }
@@ -51,5 +49,6 @@
 @media screen and (max-width:768px) {
     .cards{
         grid-template-columns: repeat(2, 1fr);
+        gap: 0.2rem;
     }
 }
