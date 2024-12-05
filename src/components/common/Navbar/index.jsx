@@ -77,13 +77,13 @@ export default function Navbar({ openModal, setOpenModal }) {
     if (!restaurant) {
       toast.error("No restaurants available");
       navigate("/");
-      return;
+      // return;
     }
 
     if (items.length === 0) {
       toast.error("No items in the basket");
       navigate("/");
-      return;
+      // return;
     }
     navigate(`/restaurants/${restaurant?._id}`);
     setOpenModal((prev) => !prev);

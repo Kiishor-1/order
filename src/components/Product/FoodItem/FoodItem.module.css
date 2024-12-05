@@ -59,6 +59,11 @@
     /* max-width: 81px; */
 }
 
+.add_button:active{
+    filter: grayscale(0.8);
+    background-color: #dbdada;
+}
+
 .add_button img{
     height: 49px;
     height: 49px;
