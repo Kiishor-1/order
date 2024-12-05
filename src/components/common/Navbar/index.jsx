@@ -57,21 +57,6 @@ export default function Navbar({ openModal, setOpenModal }) {
 
   const { items } = useSelector((state) => state.cart);
 
-  const handleGoToCart = () => {
-    if (!restaurant) {
-      toast.error("No restaurants available");
-      // return;
-    }
-
-    if (items.length === 0) {
-      toast.error("No items in the basket");
-      // return;
-    }
-
-    navigate(`/restaurants/${restaurant._id}`)
-  };
-
-
   const navLinks = [
     'Home',
     'Browse Menu',
@@ -88,8 +73,20 @@ export default function Navbar({ openModal, setOpenModal }) {
   }
 
 
-  const toggleCart = () => {
-    setOpenModal((prev) => !prev)
+  const handleGoToCart = () => {
+    if (!restaurant) {
+      toast.error("No restaurants available");
+      navigate("/");
+      return;
+    }
+
+    if (items.length === 0) {
+      toast.error("No items in the basket");
+      navigate("/");
+      return;
+    }
+    navigate(`/restaurants/${restaurant?._id}`);
+    setOpenModal((prev) => !prev);
   }
 
   return (
@@ -109,9 +106,9 @@ export default function Navbar({ openModal, setOpenModal }) {
             <span className={Styles.change_location}>Change location</span>
           </div>
           <ul className={Styles.cart}>
-            <li >
+            <li onClick={handleGoToCart}>
               <img className={Styles.basket} src={Basket} alt="cart image" />
-              <button onClick={toggleCart} className={Styles.go_to_cart}> My Cart</button>
+              <button className={Styles.go_to_cart}> My Cart</button>
             </li>
             <li>{items && items.length > 0 && items.length}</li>
             <li>
@@ -174,10 +171,10 @@ export default function Navbar({ openModal, setOpenModal }) {
             <img src={UserImage} alt="" />
             Hey {user ? user?.name.split(' ')[0] : 'User'}
           </div>
-          <div className={Styles.items_at_cart} >
-           {items && items.length > 0 && <span className={Styles.cart_badge}>{items.length}</span>}
+          <div className={Styles.items_at_cart} onClick={handleGoToCart}>
+            {items && items.length > 0 && <span className={Styles.cart_badge}>{items.length}</span>}
             <img src={Basket2} alt="" />
-            <button onClick={toggleCart} className={Styles.go_to_cart}> My Cart</button>
+            <button className={Styles.go_to_cart}> My Cart</button>
           </div>
         </div>
       </section>
